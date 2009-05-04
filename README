@@ -1,0 +1,12 @@
+To install, make sure you have sbcl installed -
+
+http://www.sbcl.org/
+
+Then run install.lisp in the current directory to make sure you have the 
+required libraries installed.
+
+To make, run make.
+
+To run, call cybernetic-microblogger with the identi.ca usrname and password
+for the account you wish to post to as the first and second arguments. 
+e.g. ./cybernetic-microblogger username password
