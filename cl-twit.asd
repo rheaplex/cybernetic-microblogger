@@ -1,1 +1,0 @@
-/home/robmyers/Desktop/cybernetic-lisp/cl-twit/cl-twit.asd
