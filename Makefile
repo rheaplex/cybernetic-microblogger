@@ -19,9 +19,9 @@
 cybernetic-microblogger:	make.lisp \
 				cybernetic.lisp \
 				cybernetic-microblogger.lisp \
-				packages.lisp \
+				package.lisp \
 				cybernetic.asd
-	sbcl --script "./make.lisp"
+	sbcl --load "./make.lisp"
 
 clean:
 	rm -f cybernetic-microblogger

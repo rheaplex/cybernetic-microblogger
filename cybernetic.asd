@@ -24,6 +24,6 @@
     :serial t
     :depends-on (#:cl-twit #:microblog-bot)
     :components
-    ((:file "packages")
+    ((:file "package")
      (:file "cybernetic")
      (:file "cybernetic-microblogger")))

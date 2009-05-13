@@ -19,17 +19,17 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utilities
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;t;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun maybe (fun &key (probability 0.5) (default nil))
   "Call fun with aqrgs if random(0..1) is less than probability."
-  (if (< (random 1.0 the-random-state) probability)
+  (if (< (random 1.0) probability)
       (funcall fun)
     default))
 
 (defun choose-randomly (choices)
   "Choose one of the parameters randomly."
-  (nth (random (list-length choices) the-random-state) 
+  (nth (random (list-length choices)) 
        choices))
 
 (defun choose-randomly-deep (choices)
@@ -128,7 +128,7 @@
 (defun shape-form (plural)
   "Generate a shape form description."
   (cond 
-   ((> (random 1.0 the-random-state) 0.5)
+   ((> (random 1.0) 0.5)
     (concatenate-string (choose-randomly abstract-shape-treatment)
 		 (pluralise (choose-randomly-deep abstract-shapes) plural)))
    (t
@@ -149,7 +149,6 @@
 
 (defun generate-description ()
   "Describe a single (set of) figure(s) on a single ground."
-  (setf the-random-state (make-random-state t))
   (let ((plural (amount)))
     (concatenate-string plural (shape plural)
 			"on a" (ground) "ground.")))

@@ -33,6 +33,7 @@
     (twit:update (generate-description)))
        
 (defun run-microblog-bot (user password)
+  (setf *random-state* (make-random-state t))
   (microblog-bot:set-microblog-service "http://identi.ca/api" "cybernetic")
   (let ((bot (make-instance 'cybernetic-microblogger
 			    :nickname user	    
