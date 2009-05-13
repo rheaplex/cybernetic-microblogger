@@ -19,6 +19,5 @@
 (cl:defpackage #:cybernetic
   (:documentation
    "The Cybernetic Artwork Nobody Wrote")
-  (:use #:common-lisp)
-  (:export microblog-cybernetic-and-quit))
-
+  (:use #:common-lisp #:cl-twit #:microblog-bot)
+  (:export run))

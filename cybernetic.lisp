@@ -18,28 +18,6 @@
 (in-package #:cybernetic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Random state
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defparameter the-random-state (make-random-state t))
-
-(defparameter random-state-path "./random-state")
-
-(defun initialise-cybernetic ()
-  "Load or create the random state."
-  (if (probe-file random-state-path)
-      (with-open-file (random-stream random-state-path)
-	(setf the-random-state (read random-stream)))
-      (setf the-random-state (make-random-state t))))
-
-(defun finalise-cybernetic ()
-  "Save the random state between sessions, as new ones are always the same."
-  (with-open-file (random-stream random-state-path 
-			       :direction :output 
-			       :if-exists :supersede)
-    (print the-random-state random-stream)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Utilities
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

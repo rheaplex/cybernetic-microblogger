@@ -19,19 +19,27 @@
 
 (in-package #:cybernetic)
 
-;; The microblogging function
+(defclass cybernetic-microblogger (microblog-bot:microblog-bot)
+  ())
 
-(defun microblog-cybernetic-and-quit ()
-  (initialise-cybernetic)
-  (when (< (length sb-ext:*posix-argv*) 2)
-    (format t "Pass username and password as the 1st and 2nd arguments.~%")
-    (sb-ext:quit))
-  (setf twit::*source* "cybernetic")
-  (setf twit::*base-url* "http://identi.ca/api")
-  (setf twit:*username* (second sb-ext:*posix-argv*))
-  (setf twit:*password* (third sb-ext:*posix-argv*))
-  
-  (twit:login t)
-  (twit:update (generate-description))
-  (finalise-cybernetic)
-  (sb-ext:quit))
+(defmethod respond-to-mention ((bot cybernetic-microblogger) mention)
+  "Respond to the mention by plugging the source."
+  (cl-twit:update (format nil "@~a Hi! You can see my source code here - http://robmyers.org/git/?p=cybernetic-microblogger.git" 
+			  (cl-twit:user-screen-name 
+			   (cl-twit:status-user mention)))))
+
+(defmethod periodic-task ((bot cybernetic-microblogger))
+  "Dent a possible artwork."
+    (twit:update (generate-description)))
+       
+(defun run-microblog-bot (user password)
+  (microblog-bot:set-microblog-service "http://identi.ca/api" "cybernetic")
+  (let ((bot (make-instance 'cybernetic-microblogger
+			    :nickname user	    
+			    :password password)))
+    (microblog-bot:run-bot bot)))
+
+(defun run ()
+  "Configure and run the bot."
+  (assert (>= (length sb-ext:*posix-argv*) 2))
+  (run-microblog-bot (second sb-ext:*posix-argv*) (third sb-ext:*posix-argv*)))

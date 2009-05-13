@@ -22,6 +22,7 @@
 
 (asdf:defsystem #:cybernetic
     :serial t
+    :depends-on (#:cl-twit #:microblog-bot)
     :components
     ((:file "packages")
      (:file "cybernetic")

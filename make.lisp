@@ -22,11 +22,14 @@
 ;; Load libraries
 
 (require 'asdf)
-(asdf:operate 'asdf:load-op :cl-twit)
+(push "../microblog-bot" asdf:*central-registry*)
+(push "../microblog-bot/cl-twit" asdf:*central-registry*)
+;(asdf:operate 'asdf:load-op :cl-twit)
+;(asdf:operate 'asdf:load-op :microblog-bot)
 (asdf:operate 'asdf:load-op :cybernetic)
 
 ;; Make the runnable image
 
 (sb-ext:save-lisp-and-die "cybernetic-microblogger" 
 			  :executable t 
-			  :toplevel #'cybernetic:microblog-cybernetic-and-quit)
+			  :toplevel #'cybernetic:run)
