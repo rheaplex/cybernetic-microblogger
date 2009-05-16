@@ -37,7 +37,8 @@
   (microblog-bot:set-microblog-service "http://identi.ca/api" "cybernetic")
   (let ((bot (make-instance 'cybernetic-microblogger
 			    :nickname user	    
-			    :password password)))
+			    :password password
+			    :ignore '("cybercritic"))))
     (microblog-bot:run-bot bot)))
 
 (defun run ()
