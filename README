@@ -1,12 +1,10 @@
-To install, make sure you have sbcl installed -
+make sure you have sbcl installed -
 
 http://www.sbcl.org/
 
-Then run install.lisp in the current directory to make sure you have the 
-required libraries installed.
+If you would like to see cybernetic running locally, open a console and type -
 
-To make, run make.
+sbcl --noinform --load "local-demo"
 
-To run, call cybernetic-microblogger with the identi.ca usrname and password
-for the account you wish to post to as the first and second arguments. 
-e.g. ./cybernetic-microblogger username password
+If you would like to make and run cybernetic as a microblogging bot, see
+INSTALL for details.
