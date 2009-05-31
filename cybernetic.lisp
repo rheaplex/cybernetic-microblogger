@@ -115,12 +115,6 @@
 (defparameter generic-shape-treatments '("" "" "" "silhouetted" "outlined" 
 					 "abstracted"))
 
-(defun shape (plural)
-  "Generate a shape description."
-  (concatenate-string (shape-size)
-		      (appearance)
-		      (shape-form plural)))
-
 (defun shape-size ()
   "Generate a size for the shape."
   (choose-randomly '("" "" "tiny" "small" "large" "massive")))
@@ -134,6 +128,12 @@
    (t
     (concatenate-string (choose-randomly generic-shape-treatments)
 		 (pluralise (choose-randomly-deep generic-shapes) plural)))))
+
+(defun shape (plural)
+  "Generate a shape description."
+  (concatenate-string (shape-size)
+		      (appearance)
+		      (shape-form plural)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ground
