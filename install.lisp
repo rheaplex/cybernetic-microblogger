@@ -23,4 +23,8 @@
 (asdf-install:install 'drakma)
 
 (when (not (file-probe "./cl-twit.asd"))
-  (sb-posix:symlink "./cl-twit/cl-twit.asd" "./cl-twit.asd"))
+  (sb-posix:symlink "../microblog-bot/cl-twit/cl-twit.asd" "./cl-twit.asd"))
+
+
+(when (not (file-probe "./cl-twit.asd"))
+  (sb-posix:symlink "../microblog-bot/microblog-bot" "./microblog-bot.asd"))
