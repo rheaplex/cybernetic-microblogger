@@ -22,11 +22,13 @@
 (defclass cybernetic-microblogger (microblog-bot:microblog-bot)
   ())
 
+
 (defmethod respond-to-mention ((bot cybernetic-microblogger) mention)
   "Respond to the mention by plugging the source."
-  (cl-twit:update (format nil "@~a Hi! You can see my source code here - http://robmyers.org/git/?p=cybernetic-microblogger.git" 
-			  (cl-twit:user-screen-name 
-			   (cl-twit:status-user mention)))))
+  (ignore-errors
+      (cl-twit:update (format nil "@~a Hi! You can see my source code here - http://robmyers.org/git/?p=cybernetic-microblogger.git" 
+			      (cl-twit:user-screen-name 
+			       (cl-twit:status-user mention))))))
 
 (defmethod periodic-task ((bot cybernetic-microblogger))
   "Dent a possible artwork."

@@ -22,9 +22,7 @@
 ;; Load libraries
 
 (require 'asdf)
-(push "../microblog-bot" asdf:*central-registry*)
-(push "../microblog-bot/cl-twit" asdf:*central-registry*)
-;(asdf:operate 'asdf:load-op :cl-twit)
+(asdf:operate 'asdf:load-op :cl-twit)
 ;(asdf:operate 'asdf:load-op :microblog-bot)
 (asdf:operate 'asdf:load-op :cybernetic)
 
